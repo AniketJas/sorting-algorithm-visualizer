@@ -6,7 +6,9 @@ const ANIMATION_SPEED_MS = 10;
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 125;
 // This is the main color of the array bars.
-const PRIMARY_COLOR = "green";
+const PRIMARY_COLOR = "#f0c808";
+// This is the final color of the array bars.
+const FINAL_COLOR = "green";
 // This is the color of array bars that are being compared throughout the animations.
 const SECONDARY_COLOR = "red";
 
@@ -29,7 +31,7 @@ export default class Visualizer extends React.Component {
     this.setState({ array });
     const arrayBars = document.getElementsByClassName("array-bar");
     for (let i = 0; i < arrayBars.length; i++) {
-      arrayBars[i].style.backgroundColor = "#f0c808";
+      arrayBars[i].style.backgroundColor = PRIMARY_COLOR;
     }
   }
 
@@ -55,7 +57,7 @@ export default class Visualizer extends React.Component {
         const barOneStyle = arrayBars[barOneIdx].style;
         const barTwoStyle = arrayBars[barTwoIdx].style;
 
-        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        const color = i % 3 === 0 ? SECONDARY_COLOR : FINAL_COLOR;
 
         setTimeout(() => {
           barOneStyle.backgroundColor = color;
@@ -109,7 +111,7 @@ export default class Visualizer extends React.Component {
               <div
                 className="array-bar display-inline w-[10px]"
                 key={idx}
-                style={{ height: `${value}px` }}
+                style={{ height: `${value}px`, backgroundColor: PRIMARY_COLOR }}
               ></div>
             );
           })}

@@ -1,4 +1,3 @@
-import "./App.css";
 import Visualizer from "./component/Visualizer";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
