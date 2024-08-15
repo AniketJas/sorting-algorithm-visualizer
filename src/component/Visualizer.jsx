@@ -1,6 +1,15 @@
 import React from "react";
 import { mergeSort } from "../Algorithms/MergeSort";
 
+// Change this value for the speed of the animations.
+const ANIMATION_SPEED_MS = 10;
+// Change this value for the number of bars (value) in the array.
+const NUMBER_OF_ARRAY_BARS = 125;
+// This is the main color of the array bars.
+const PRIMARY_COLOR = "green";
+// This is the color of array bars that are being compared throughout the animations.
+const SECONDARY_COLOR = "red";
+
 export default class Visualizer extends React.Component {
   constructor(props) {
     super(props);
@@ -14,16 +23,52 @@ export default class Visualizer extends React.Component {
 
   resetArray() {
     const array = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
       array.push(randomIntFromIntervals(5, 600));
     }
     this.setState({ array });
+    const arrayBars = document.getElementsByClassName("array-bar");
+    for (let i = 0; i < arrayBars.length; i++) {
+      arrayBars[i].style.backgroundColor = "#f0c808";
+    }
+  }
+
+  consoleSortedArray() {
+    console.log("Generated Array" + this.state.array);
+    console.log(
+      "Sorted Array" + this.state.array.slice().sort((a, b) => a - b)
+    );
   }
 
   mergeSort() {
-    const sortedArray = mergeSort(this.state.array);
-    console.log("Generated Array: " + this.state.array);
-    console.log("My Sorted Array: " + sortedArray);
+    console.log("Merge Sort");
+    this.consoleSortedArray();
+    const animations = mergeSort(this.state.array);
+
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      const isColorChange = i % 3 !== 2;
+
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+
+        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
   }
 
   quickSort() {
@@ -37,22 +82,6 @@ export default class Visualizer extends React.Component {
   selectionSort() {
     console.log("Selection sort");
   }
-
-  testSortingAlgorithms() {
-    const array = [];
-    const length = randomIntFromIntervals(1, 1000);
-
-    for (let i = 0; i < length; i++) {
-      array.push(randomIntFromIntervals(-1000, 1000));
-    }
-
-    const jsSortedArray = array.slice().sort((a, b) => a - b);
-    const mergeSortArray = mergeSort(array.slice());
-
-    console.log(
-      "Merge sort test: " + arraysAreEqual(jsSortedArray, mergeSortArray)
-    );
-  } //testing all algorithms
 
   render() {
     const { array } = this.state;
@@ -72,16 +101,13 @@ export default class Visualizer extends React.Component {
             <button onClick={() => this.quickSort()}>Quick Sort</button>
             <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
             <button onClick={() => this.selectionSort()}>Selection Sort</button>
-            <button onClick={() => this.testSortingAlgorithms()}>
-              Test Sorting Algorithms
-            </button>
           </div>
         </div>
         <div className="flex gap-1 max-w-screen justify-center">
           {array.map((value, idx) => {
             return (
               <div
-                className="display-inline bg-blue-400 w-[10px]"
+                className="array-bar display-inline w-[10px]"
                 key={idx}
                 style={{ height: `${value}px` }}
               ></div>
@@ -95,16 +121,4 @@ export default class Visualizer extends React.Component {
 
 function randomIntFromIntervals(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function arraysAreEqual(arrayOne, arrayTwo) {
-  if (arrayOne.length !== arrayTwo.length) {
-    return false;
-  }
-  for (let i = 0; i < arrayOne.length; i++) {
-    if (arrayOne[i] !== arrayTwo[i]) {
-      return false;
-    }
-  }
-  return true;
 }
