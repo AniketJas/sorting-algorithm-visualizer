@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { resetArray } from "../functions/resetArray";
 import MergeSortAnimation from "../AnimationFunction/MergeSortAnimation";
 import * as MyConstants from "../Constants";
+import QuickSortAnimation from "../AnimationFunction/QuickSortAnimation";
+import BubbleSortAnimation from "../AnimationFunction/BubbleSortAnimation";
 
 function Visualizer() {
   const [array, setArray] = useState(resetArray());
@@ -24,16 +26,18 @@ function Visualizer() {
         </div>
         <div className="flex w-2/3 justify-end gap-5">
           <button onClick={() => MergeSortAnimation(array)}>Merge Sort</button>
-          {/* <button onClick={() => quickSort()}>Quick Sort</button>
-          <button onClick={() => bubbleSort()}>Bubble Sort</button>
-          <button onClick={() => selectionSort()}>Selection Sort</button> */}
+          <button onClick={() => BubbleSortAnimation(array)}>
+            Bubble Sort
+          </button>
+          <button onClick={() => QuickSortAnimation(array)}>Quick Sort</button>
+          {/* <button onClick={() => selectionSort()}>Selection Sort</button> */}
         </div>
       </div>
-      <div className="flex gap-1 max-w-screen justify-center">
+      <div className="flex gap-1 max-w-screen justify-center mx-16">
         {array.map((value, idx) => {
           return (
             <div
-              className="array-bar display-inline w-[5px]"
+              className="array-bar display-inline w-[5px] min-w-[0.5px]"
               key={idx}
               style={{
                 height: `${value}px`,

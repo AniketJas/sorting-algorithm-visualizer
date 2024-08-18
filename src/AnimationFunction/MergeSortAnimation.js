@@ -3,11 +3,10 @@ import * as MyConstants from "../Constants";
 
 function MergeSortAnimation(array) {
   console.log("Merge Sort");
-  //   this.consoleSortedArray();
   const animations = mergeSort(array);
+  const arrayBars = document.getElementsByClassName("array-bar");
 
   for (let i = 0; i < animations.length; i++) {
-    const arrayBars = document.getElementsByClassName("array-bar");
     const isColorChange = i % 3 !== 2;
 
     if (isColorChange) {
