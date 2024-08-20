@@ -1,9 +1,6 @@
-import * as MyConstants from "../Constants";
-
 export function bubbleSort(array) {
-  let size = MyConstants.NUMBER_OF_ARRAY_BARS;
-
   const animations = [];
+  const size = array.length;
 
   var i, j, temp;
   var swapped;

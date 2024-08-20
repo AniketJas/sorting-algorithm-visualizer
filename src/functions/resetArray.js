@@ -1,10 +1,10 @@
 import * as MyConstants from "../Constants";
 
-export function resetArray(size = MyConstants.NUMBER_OF_ARRAY_BARS) {
+export function resetArray(size) {
   const array = [];
 
   for (let i = 0; i < size; i++) {
-    array.push(randomIntFromIntervals(5, 600));
+    array.push(randomIntFromIntervals(5, 550));
   }
 
   const arrayBars = document.getElementsByClassName("array-bar");

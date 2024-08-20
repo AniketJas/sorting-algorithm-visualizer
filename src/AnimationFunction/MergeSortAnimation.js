@@ -1,7 +1,7 @@
 import { mergeSort } from "../Algorithms/MergeSort";
 import * as MyConstants from "../Constants";
 
-function MergeSortAnimation(array) {
+function MergeSortAnimation(array, animationSpeed) {
   console.log("Merge Sort");
   const animations = mergeSort(array);
   const arrayBars = document.getElementsByClassName("array-bar");
@@ -21,13 +21,13 @@ function MergeSortAnimation(array) {
       setTimeout(() => {
         barOneStyle.backgroundColor = color;
         barTwoStyle.backgroundColor = color;
-      }, i * MyConstants.ANIMATION_SPEED_MS);
+      }, i * animationSpeed);
     } else {
       setTimeout(() => {
         const [barOneIdx, newHeight] = animations[i];
         const barOneStyle = arrayBars[barOneIdx].style;
         barOneStyle.height = `${newHeight}px`;
-      }, i * MyConstants.ANIMATION_SPEED_MS);
+      }, i * animationSpeed);
     }
   }
 }

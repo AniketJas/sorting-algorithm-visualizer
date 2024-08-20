@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function QuickSortAnimation(array) {
+export default function QuickSortAnimation(array, animationSpeed) {
   console.log("Quick Sort");
   return;
 }

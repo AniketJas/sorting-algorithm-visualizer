@@ -1,16 +1,14 @@
 import { bubbleSort } from "../Algorithms/BubbleSort";
 import * as MyConstants from "../Constants";
 
-export default function BubbleSortAnimation(array) {
+export default function BubbleSortAnimation(array, animationSpeed) {
   console.log("Bubble Sort");
   const animations = bubbleSort(array);
-  console.log(animations);
 
   const arrayBars = document.getElementsByClassName("array-bar");
   var len = arrayBars.length;
 
   function lastBarColorChange() {
-    console.log(len);
     len--;
     const arrayBarStyle = arrayBars[len].style;
     arrayBarStyle.backgroundColor = MyConstants.FINAL_COLOR;
@@ -20,7 +18,7 @@ export default function BubbleSortAnimation(array) {
     if (animations[i].length === 1) {
       setTimeout(() => {
         lastBarColorChange();
-      }, i * MyConstants.ANIMATION_SPEED_MS);
+      }, (i + 1) * animationSpeed);
     } else {
       const [idxOne, idxTwo, idxOneHeight, idxTwoHeight] = animations[i];
 
@@ -40,13 +38,13 @@ export default function BubbleSortAnimation(array) {
           barOneStyle.backgroundColor = MyConstants.ANIMATION_COLOR;
           barTwoStyle.backgroundColor = MyConstants.ANIMATION_COLOR;
         }, 10);
-      }, i * MyConstants.ANIMATION_SPEED_MS);
+      }, i * animationSpeed);
     }
   }
 
   for (let i = 0; i < arrayBars.length; i++) {
     setTimeout(() => {
       arrayBars[i].style.backgroundColor = MyConstants.FINAL_COLOR;
-    }, MyConstants.ANIMATION_SPEED_MS * animations.length);
+    }, animationSpeed * animations.length);
   }
 }
