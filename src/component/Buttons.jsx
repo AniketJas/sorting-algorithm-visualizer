@@ -4,6 +4,7 @@ import QuickSortAnimation from "../AnimationFunction/QuickSortAnimation";
 import BubbleSortAnimation from "../AnimationFunction/BubbleSortAnimation";
 import SelectionSortAnimation from "../AnimationFunction/SelectionSortAnimation";
 import { sortButtonToggle } from "../functions/sortButtonToggle";
+import InsertionSortAnimation from "../AnimationFunction/InsertionSortAnimation";
 
 export default function Button({ array, animationSpeed }) {
   return (
@@ -48,6 +49,17 @@ export default function Button({ array, animationSpeed }) {
         id="selectionsort"
       >
         Selection Sort
+      </button>
+
+      <button
+        onClick={() => {
+          sortButtonToggle("insertionsort");
+          InsertionSortAnimation(array, animationSpeed);
+        }}
+        className="sort-btn py-2 px-4 rounded-xl toggleAlgoButton"
+        id="insertionsort"
+      >
+        Insertion Sort
       </button>
     </div>
   );
