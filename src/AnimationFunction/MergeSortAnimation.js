@@ -1,5 +1,6 @@
 import { mergeSort } from "../Algorithms/MergeSort";
 import * as MyConstants from "../Constants";
+import { generateButtonToggle } from "../functions/generateButtonToggle";
 
 function MergeSortAnimation(array, animationSpeed) {
   console.log("Merge Sort");
@@ -30,6 +31,9 @@ function MergeSortAnimation(array, animationSpeed) {
       }, i * animationSpeed);
     }
   }
+  setTimeout(() => {
+    generateButtonToggle(animationSpeed);
+  }, animationSpeed * animations.length);
 }
 
 export default MergeSortAnimation;

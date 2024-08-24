@@ -1,5 +1,7 @@
 import { selectionSort } from "../Algorithms/SelectionSort";
 import * as MyConstants from "../Constants";
+import { finalBarColor } from "../functions/finalBarColor";
+import { generateButtonToggle } from "../functions/generateButtonToggle";
 
 export default function SelectionSortAnimation(array, animationSpeed) {
   console.log("Selection Sort");
@@ -7,15 +9,7 @@ export default function SelectionSortAnimation(array, animationSpeed) {
   const animations = selectionSort(array);
   const arrayBars = document.getElementsByClassName("array-bar");
 
-  var len = 0;
-  var i;
-
-  function firstBarColorChange() {
-    const arrayBarStyle = arrayBars[len++].style;
-    arrayBarStyle.backgroundColor = MyConstants.FINAL_COLOR;
-  }
-
-  for (i = 0; i < animations.length; i++) {
+  for (let i = 0; i < animations.length; i++) {
     const [idxOne, idxTwo, idxOneHeight, idxTwoHeight] = animations[i];
 
     setTimeout(() => {
@@ -34,12 +28,14 @@ export default function SelectionSortAnimation(array, animationSpeed) {
         barOneStyle.backgroundColor = MyConstants.FINAL_COLOR;
         barTwoStyle.backgroundColor = MyConstants.PRIMARY_COLOR;
       }, 100);
-    }, i * animationSpeed);
+    }, i * animationSpeed * 10);
   }
 
-  for (i = 0; i < array.length; i++) {
+  finalBarColor(animationSpeed * 10);
+
+  for (let i = 0; i < animations.length; i++) {
     setTimeout(() => {
-      firstBarColorChange();
-    }, i * animationSpeed);
+      generateButtonToggle(animationSpeed * 10);
+    }, animationSpeed * animations.length * 10);
   }
 }

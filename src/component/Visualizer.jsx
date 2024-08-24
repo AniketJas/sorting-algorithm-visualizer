@@ -30,7 +30,7 @@ function Visualizer() {
         <div className="w-1/6">
           <button
             onClick={() => reset(arraySize)}
-            className="bg-white text-black py-2 h-max px-4 rounded-2xl"
+            className="bg-white text-black py-2 h-max px-4 rounded-2xl toggleButton"
           >
             Generate New Array
           </button>

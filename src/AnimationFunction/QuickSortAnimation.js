@@ -1,4 +1,5 @@
 import { quickSort } from "../Algorithms/QuickSort";
+import { generateButtonToggle } from "../functions/generateButtonToggle";
 import * as MyConstants from "../Constants";
 
 export default function QuickSortAnimation(array, animationSpeed) {
@@ -38,6 +39,7 @@ export default function QuickSortAnimation(array, animationSpeed) {
   for (let i = 0; i < arrayBars.length; i++) {
     setTimeout(() => {
       arrayBars[i].style.backgroundColor = MyConstants.FINAL_COLOR;
+      generateButtonToggle(animationSpeed);
     }, animationSpeed * animations.length);
   }
 }

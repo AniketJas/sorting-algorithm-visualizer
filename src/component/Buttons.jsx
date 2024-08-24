@@ -4,7 +4,6 @@ import QuickSortAnimation from "../AnimationFunction/QuickSortAnimation";
 import BubbleSortAnimation from "../AnimationFunction/BubbleSortAnimation";
 import SelectionSortAnimation from "../AnimationFunction/SelectionSortAnimation";
 import { sortButtonToggle } from "../functions/sortButtonToggle";
-import { finalBarColor } from "../functions/finalBarColor";
 
 export default function Button({ array, animationSpeed }) {
   return (
@@ -14,7 +13,7 @@ export default function Button({ array, animationSpeed }) {
           sortButtonToggle("mergesort");
           MergeSortAnimation(array, animationSpeed);
         }}
-        className="sort-btn py-2 px-4 rounded-xl"
+        className="sort-btn py-2 px-4 rounded-xl toggleAlgoButton"
         id="mergesort"
       >
         Merge Sort
@@ -24,7 +23,7 @@ export default function Button({ array, animationSpeed }) {
           sortButtonToggle("bubblesort");
           BubbleSortAnimation(array, animationSpeed);
         }}
-        className="sort-btn py-2 px-4 rounded-xl"
+        className="sort-btn py-2 px-4 rounded-xl toggleAlgoButton"
         id="bubblesort"
       >
         Bubble Sort
@@ -34,7 +33,7 @@ export default function Button({ array, animationSpeed }) {
           sortButtonToggle("quicksort");
           QuickSortAnimation(array, animationSpeed);
         }}
-        className="sort-btn py-2 px-4 rounded-xl"
+        className="sort-btn py-2 px-4 rounded-xl toggleAlgoButton"
         id="quicksort"
       >
         Quick Sort
@@ -44,9 +43,8 @@ export default function Button({ array, animationSpeed }) {
         onClick={() => {
           sortButtonToggle("selectionsort");
           SelectionSortAnimation(array, animationSpeed);
-          finalBarColor(array, animationSpeed);
         }}
-        className="sort-btn py-2 px-4 rounded-xl"
+        className="sort-btn py-2 px-4 rounded-xl toggleAlgoButton"
         id="selectionsort"
       >
         Selection Sort

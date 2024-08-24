@@ -1,5 +1,6 @@
 import { bubbleSort } from "../Algorithms/BubbleSort";
 import * as MyConstants from "../Constants";
+import { generateButtonToggle } from "../functions/generateButtonToggle";
 
 export default function BubbleSortAnimation(array, animationSpeed) {
   console.log("Bubble Sort");
@@ -45,6 +46,7 @@ export default function BubbleSortAnimation(array, animationSpeed) {
   for (let i = 0; i < arrayBars.length; i++) {
     setTimeout(() => {
       arrayBars[i].style.backgroundColor = MyConstants.FINAL_COLOR;
+      generateButtonToggle(animationSpeed);
     }, animationSpeed * animations.length);
   }
 }
